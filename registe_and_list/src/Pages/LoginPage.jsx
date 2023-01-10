@@ -1,15 +1,14 @@
-import React from 'react'
-
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { localUsersContext } from "../Context/LocalUsersContextProvider";
+import { RegisterAndLoginContext } from "../Context/RegisterAndLoginContextProvider";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 
-const Login = () => {
-  const {   userLoggedin, setUserLoggedin, SetLogUserIn} = useContext(LoginContext);
+
+const LoginPage = () => {
+
   const navigate = useNavigate();
 
-  const { usersLocal } = useContext(localUsersContext);
+  const { usersLocal,SetLogUserIn } = useContext(RegisterAndLoginContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,29 +22,26 @@ const Login = () => {
       (user) => user.email === email && user.password === password
     );
 
-
     console.log(loginAccount);
     if (!loginAccount) {
       console.log("no user matched");
       setError("פרטי התחברות לא תקינים");
       return;
     }
-
     SetLogUserIn(loginAccount)
     console.log("logged in",loginAccount);
     navigate("/home");
-    
   };
 
   return (
     <>
     <Card>
       <Card.Body>
-        <h2 className="text-center mb-4">התחברות</h2>
+        <h2 className="text-center mb-4">LOGIN</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleLoginSubmit}>
           <Form.Group id="email">
-            <Form.Label>אימייל</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -53,11 +49,9 @@ const Login = () => {
               required
             />
           </Form.Group>
-
-          <Form.Group id="email"></Form.Group>
-
+          
           <Form.Group id="password">
-            <Form.Label>סיסמה</Form.Label>
+            <Form.Label>password</Form.Label>
             <Form.Control
               type="password"
               required
@@ -66,13 +60,13 @@ const Login = () => {
             />
           </Form.Group>
           <Button className="w-100 mt-2" type="submit">
-            התחבר
+            LOGIN
           </Button>
         </Form>
       </Card.Body>
     </Card>
       <div className="w-100 text-center mb-4 mt-2">
-        אין לך  חשבון -&gt; הירשם
+       You Don't have an acount -&gt; <button onClick={(e)=>{navigate('/signup')}}>Register</button>
       </div>
       </>   
   );
