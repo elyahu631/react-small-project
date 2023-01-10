@@ -7,13 +7,15 @@ export default function Note(props) {
 
   return (
     <Container>
+
       <Row>
-        <Col xs lg="1">{props.title} </Col>
-        <Col md="auto">{props.description}</Col>
-        <Col>
-          <Button md="auto" onClick={() => deleteNote(props.id)}>❌</Button>
+        <Col xs lg="3" style={{fontWeight: "800"}}>{props.title} </Col>
+        <Col  xs lg="7" style={{fontWeight: "500"}}>{props.description}</Col>
+        <Col xs lg="2" className="d-flex align-items-center justify-content-center">
+          <Button  style={{fontSize: "12px"}} onClick={() => deleteNote(props.id)}>❌</Button>
         </Col>
       </Row>
+      <hr />
     </Container>
   )
 }

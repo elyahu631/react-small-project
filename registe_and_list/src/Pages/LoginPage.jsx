@@ -25,7 +25,7 @@ const LoginPage = () => {
     console.log(loginAccount);
     if (!loginAccount) {
       console.log("no user matched");
-      setError("פרטי התחברות לא תקינים");
+      setError("Invalid login details");
       return;
     }
     SetLogUserIn(loginAccount)

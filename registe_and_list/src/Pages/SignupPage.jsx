@@ -32,19 +32,19 @@ const SignupPage = () => {
    
     if (!emailRegex.test(email)) {
       console.log("Invalid email");
-      setError("כתובת אימייל שגויה");
+      setError("Invalid email");
       return;
     }
 
     if (!passwordRegex.test(password)) {
       console.log("Invalid password");
-      setError("סיסמה שגויה");
+      setError("Invalid password");
       return;
     }
 
     if (password !== confirmPassword) {
       console.log("Invalid comfirmPassword");
-      setError("אימות סיסמה שגוי");
+      setError("Password verification is incorrect");
       return;
     }
 
@@ -56,6 +56,7 @@ const SignupPage = () => {
     setIdCounter(prev=>prev+1) 
 
     addUserToContext(newUser);
+    console.log(newUser);
     navigate("/");
   }
 
